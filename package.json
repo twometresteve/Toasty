@@ -1,0 +1,33 @@
+{
+    "name": "toasty",
+    "version": "1.0.2",
+    "description": "Map view of Farming Simulator 22 server",
+    "main": "server/app.ts",
+    "scripts": {
+        "version": "npx genversion --es6 libraries/version.ts",
+        "start": "ts-node server/app.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AnxietyisReal/Toasty"
+    },
+    "author": "Toast",
+    "license": "GNU LGPLv3",
+    "dependencies": {
+        "xml-js": "1.6.11",
+        "lodash": "4.17.21",
+        "express": "4.18.2",
+        "winston": "3.8.2",
+        "genversion": "3.1.1",
+        "typescript": "4.9.5",
+        "http-errors": "2.0.0",
+        "consolidate": "0.16.0",
+        "cookie-parser": "1.4.6"
+    },
+    "devDependencies": {
+        "@types/node": "18.13.0",
+        "@types/lodash": "4.14.191",
+        "@types/express": "4.17.17",
+        "@types/consolidate": "0.14.1"
+    }
+}

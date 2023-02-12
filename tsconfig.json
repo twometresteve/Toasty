@@ -1,0 +1,16 @@
+{
+    "transpileOnly": true,
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "target": "ESNext",
+        "module": "NodeNext",
+        "baseUrl": "./",
+        "moduleResolution": "nodenext",
+        "typeRoots": [ "node_modules/@types", "./typings" ],
+    },
+"include": [ "node_modules/@types", "**/*" ],
+"exclude": [ "node_modules", ".git" ],
+}
