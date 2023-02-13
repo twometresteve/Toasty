@@ -23,42 +23,51 @@ export interface Vehicle {
 }
 export interface Game {
   settings: {
-    savegameName:string
-    creationDate:string
-    mapId:string
-    mapName:string
-    saveDate:string
-    resetVehicles:boolean
-    trafficEnabled:boolean
-    stopAndGoBraking:boolean
-    trailerFillLimit:boolean
-    automaticMotorStartEnabled:boolean
-    growthMode:number
-    fixedSeasonalVisuals:number
-    plannedDaysPerPeriod:number
-    fruitDestruction:boolean
-    plowingRequiredEnabled:boolean
-    stonesEnabled:boolean
-    weedsEnabled:boolean
-    limeRequired:boolean
-    isSnowEnabled:boolean
-    fuelUsage:number
-    helperBuyFuel:boolean
-    helperBuySeeds:boolean
-    helperBuyFertilizer:boolean
-    helperSlurrySource:number
-    helperManureSource:number
-    difficulty:number
-    economicDifficulty:number
-    dirtInterval:number
-    timeScale:number
-    autoSaveInterval:number
+    savegameName:XMLTypings
+    creationDate:XMLTypings
+    mapId:XMLTypings
+    mapName:XMLTypings
+    saveDate:XMLTypings
+    resetVehicles:XMLTypings
+    trafficEnabled:XMLTypings
+    stopAndGoBraking:XMLTypings
+    trailerFillLimit:XMLTypings
+    automaticMotorStartEnabled:XMLTypings
+    growthMode:XMLTypings
+    fixedSeasonalVisuals:XMLTypings
+    plannedDaysPerPeriod:XMLTypings
+    fruitDestruction:XMLTypings
+    plowingRequiredEnabled:XMLTypings
+    stonesEnabled:XMLTypings
+    weedsEnabled:XMLTypings
+    limeRequired:XMLTypings
+    isSnowEnabled:XMLTypings
+    fuelUsage:XMLTypings
+    helperBuyFuel:XMLTypings
+    helperBuySeeds:XMLTypings
+    helperBuyFertilizer:XMLTypings
+    helperSlurrySource:XMLTypings
+    helperManureSource:XMLTypings
+    difficulty:XMLTypings
+    economicDifficulty:XMLTypings
+    dirtInterval:XMLTypings
+    timeScale:XMLTypings
+    autoSaveInterval:XMLTypings
   }
   statistics: {
-    money:number
-    playTime:number
+    money:XMLTypings
+    playTime:XMLTypings
   }
   slotSystem: {
-    slotUsage:string
+    _attributes:{
+      slotUsage:string
+    }
+  }
+}
+
+interface XMLTypings {
+  _text:number|string|boolean
+  _attributes:{
+    [key:string]:number|string|boolean
   }
 }
