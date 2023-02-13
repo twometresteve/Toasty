@@ -1,4 +1,4 @@
-import {utility} from './libraries/utility';
+import utility from './libraries/utility';
 import logger from './libraries/logger';
 import config from '../config.json';
 import {Config} from '../typings/config';

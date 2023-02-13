@@ -1,5 +1,5 @@
-import {utility} from '../libraries/utility';
-import {Game, XMLTypings} from '../../typings/model';
+import utility from '../libraries/utility';
+import {Game} from '../../typings/model';
 
 export default function Game(game:Game){
   var timeScale = game?.settings.timeScale._text == undefined ? 0 : Number(game.settings.timeScale._text)

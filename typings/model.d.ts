@@ -6,20 +6,25 @@ export interface Slots {
   numUsed:number
   capacity:number
 }
-export interface Player {
-  isUsed:boolean
-  isAdmin:boolean
-  uptime:number
-  x:number
-  y:number
+export interface PlayerProperty {
+  _text:string
+  _attributes: {
+    isUsed:boolean
+    isAdmin:boolean
+    uptime:number
+    x:number
+    z:number
+  }
 }
-export interface Vehicle {
-  name:string
-  x:number
-  y:number
-  type:string
-  category:string
-  controller:string
+export interface VehicleProperty {
+  _attributes: {
+    name:string
+    x:number
+    z:number
+    type:string
+    category:string
+    controller:string
+  }
 }
 export interface Game {
   settings: {

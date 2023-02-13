@@ -12,7 +12,7 @@ export function filterFloat(value:string){
   return NaN
 }
 
-export function calcCoords(size:number,x:number,y:number){
+export function calcCoords(size:undefined|number,x:number,y:number){
   var newX=null
   var newY=null
   if(x!=null&&y!=null){
@@ -43,4 +43,6 @@ export function formatNumber(number:number,digits:number,icon:string){
   return n.toLocaleString(undefined,{minimumFractionDigits:digits})+icon;
 }
 
-export * as utility from './utility'
+export default {
+  c2json, filterFloat, calcCoords, formatTime, formatNumber
+}
