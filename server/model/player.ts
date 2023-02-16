@@ -1,15 +1,12 @@
 import lodash from 'lodash';
 import utility from '../libraries/utility';
-import icons from '../libraries/icons';
 import {PlayerProperty} from '../../typings/model';
 
 function getPlayers(players){
   const results = [];
   players.forEach((player:PlayerProperty)=>{
     if (!lodash.isEmpty(player)){
-      if (player._attributes.isUsed==false){
-        results.push(new this.Player(player))
-      }
+      if (player._attributes.isUsed==false) results.push(new this.Player(player))
     }
   })
   return results
