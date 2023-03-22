@@ -1,0 +1,27 @@
+mixin navigation
+  nav.navbar.fixed-top.navbar-expand-lg.navbar-dark
+    .container
+      a.navbar-brand(href='/')
+        img.d-inline-block.align-center(src="/images/Oasis_Favicon.png", height='35', title='Boop!')
+        span.d-inline-block.ms-2 #{(server.name == undefined ? 'Unknown Server' : server.name.replace('! ! IRTGaming|', ''))}
+
+mixin scripts()
+  script(type='text/javascript').
+      var gs = gs
+
+  // Bootstrap core JavaScript
+  script(src='https://unpkg.com/jquery@3.6.4/dist/jquery.min.js', integrity='sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==', crossorigin='anonymous')
+
+  // Bootstrap
+  script(src='https://unpkg.com/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js', integrity='sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4', crossorigin='anonymous')
+
+  // Custom Scripts
+  script(src='https://unpkg.com/leaflet@1.9.3/dist/leaflet.js' integrity='sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=' crossorigin='')
+  script(src='/javascripts/script.js')
+
+mixin footer()
+  footer.footer.mt-auto.py-3
+    .container
+      span.text-muted Toasty © 2023 
+      span.text-muted.float-end
+        | Toasty #{config.VERSION} - Farming Simulator Livemap

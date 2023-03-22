@@ -1,7 +1,7 @@
 import utility from '../libraries/utility';
 import {Game} from '../../typings/model';
 
-export default function Game(game:Game){
+export default function Game(game){
   var timeScale = game?.settings.timeScale._text == undefined ? 0 : Number(game.settings.timeScale._text)
 
   this.money = game?.statistics.money._text == undefined ? '0 $' : utility.formatNumber(game?.statistics.money._text as number, 0, ' $')

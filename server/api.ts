@@ -3,6 +3,7 @@ import logger from './libraries/logger';
 import config from '../config.json';
 import {Config} from '../typings/config';
 import {Server,Slots} from './model/server';
+import Game from './model/game';
 
 config as Config;
 const uaString = 'Toasty/';
@@ -29,7 +30,11 @@ async function fetchEntities(cb){
   }))
 }
 
-function fetchCSG(cb){}
+async function fetchCSG(cb){
+  let result = await fetch('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-savegame.html?code='+config.FSServer.APICode+'&file=careerSavegame', {signal:RequestTimeout,headers:{'User-Agent':`${uaString+'CSG'}`}})//.catch((err:Error)=>logger.error(err.message))
+  const x = utility.c2json(result.body)
+  cb(new Game(x))
+}
 
 export default {
   fetchMap, fetchServerOnly, fetchEntities, fetchCSG
