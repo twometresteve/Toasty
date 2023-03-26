@@ -14,9 +14,8 @@ function getVehicles(vehicles:string[], map:string){
   }
 
   vehicles.forEach(vehicle=>{
-    if (!lodash.isEmpty(vehicle)){
-      results.push(new this.Vehicle(vehicle))
-    }
+    console.log(vehicle)
+    if (!lodash.isEmpty(vehicle)) results.push(new this.Vehicle(vehicle))
   })
   return results
 }
@@ -34,6 +33,4 @@ function Vehicle(vehicle:VehicleProperty){
   this.popup = icons.getIconPopup(vehicle._attributes)
 }
 
-export default {
-  getVehicles, Vehicle
-}
+export default {getVehicles, Vehicle}

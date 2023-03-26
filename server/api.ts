@@ -13,7 +13,7 @@ const uaString = `Toasty ${version}/`;
 const RequestTimeout = AbortSignal.timeout(8000);
 
 async function cringePromise(url:string, uaSuffix:string){
-  return await Promise.all([await fetch(url, {signal:RequestTimeout,headers:{'User-Agent':`${uaString+uaSuffix}`}})]);
+  return await Promise.all([await fetch(url, {signal:RequestTimeout,headers:{'User-Agent':`${uaString+uaSuffix}`}})])
 }
 
 async function fetchMap(cb){
@@ -22,7 +22,9 @@ async function fetchMap(cb){
 }
 
 async function fetchXMLStats(cb){
-  const result = await cringePromise('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-stats.json?code='+config.FSServer.APICode, 'DSS')
+  const result = await cringePromise('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-stats.json?code='+config.FSServer.APICode, 'DSS').catch(err=>{
+    if (err.name === 'TimeoutError: The operation was aborted due to timeout') process.exit();
+  })
   //const result = await fetch('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-stats.json?code='+config.FSServer.APICode, {signal:RequestTimeout,headers:{'User-Agent':`${uaString+'DSS'}`}})
   cb(result)
 }
@@ -33,10 +35,10 @@ function fetchServerOnly(cb){
 
 async function fetchEntities(cb){
   fetchXMLStats(async(result)=>cb({
-    server: /*console.log('server'),*/ new Server(await result[0].clone().json().then(s=>s.server)),
-    slots: /*console.log(await result[0].json())*/ new Slots(await result[0].clone().json().then(s=>s.slots) === undefined ? 0 : await result[0].clone().json().then(s=>s.slots)),
-    players: player.getPlayers(await result[0].clone().json().then(p=>p?.players) == undefined ? 0 : await result[0].clone().json().then(p=>p.players)),
-    vehicles: vehicle.getVehicles(await result[0].clone().json().then(v=>v.vehicles), await result[0].clone().json().then(s=>s.server.mapSize))
+    server: new Server(await result[0].clone().json().then(s=>s.server) === undefined ? '' : await result[0].clone().json().then(s=>s.server)),
+    slots: new Slots(await result[0].clone().json().then(s=>s.slots) === undefined ? 0 : await result[0].clone().json().then(s=>s.slots)),
+    players: /*console.log(await result[0].clone().json().then(p=>p.slots.players)),*/ player.getPlayers(await result[0].clone().json().then(p=>p.slots.players) === undefined ? 0 : await result[0].clone().json().then(p=>p.slots.players)),
+    vehicles: vehicle.getVehicles(await result[0].clone().json().then(v=>v.vehicles) ? null : await result[0].clone().json().then(v=>v.vehicles), await result[0].clone().json().then(s=>s.server.mapSize))
   }))
 }
 
