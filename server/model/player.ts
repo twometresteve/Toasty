@@ -5,9 +5,7 @@ import {PlayerProperty} from '../../typings/model';
 function getPlayers(players){
   const results = [];
   players.forEach((player:PlayerProperty)=>{
-    if (!lodash.isEmpty(player)){
-      if (player._attributes.isUsed==false) results.push(new this.Player(player))
-    }
+    if (!lodash.isEmpty(player)) if (player._attributes.isUsed==false) results.push(new this.Player(player))
   })
   return results
 }
@@ -22,6 +20,4 @@ function Player(player:PlayerProperty){
   this.posy = coords.y
 }
 
-export default {
-  getPlayers, Player
-}
+export default {getPlayers, Player}

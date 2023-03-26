@@ -5,20 +5,25 @@ import config from '../config.json';
 import {Config} from '../typings/config';
 import {Server,Slots} from './model/server';
 import Game from './model/game';
-import axios from 'axios';
+import player from './model/player';
+import vehicle from './model/vehicle';
 
 config as Config;
 const uaString = `Toasty ${version}/`;
-const RequestTimeout = 8000;
-const Axios = axios.get;
+const RequestTimeout = AbortSignal.timeout(8000);
+
+async function cringePromise(url:string, uaSuffix:string){
+  return await Promise.all([await fetch(url, {signal:RequestTimeout,headers:{'User-Agent':`${uaString+uaSuffix}`}})]);
+}
 
 async function fetchMap(cb){
-  const map = await Axios(config.Livemap.Map,{timeout: RequestTimeout,headers:{'User-Agent':`${uaString+'Map'}`}}).catch((err:Error)=>logger.error(err.message))
+  const map = await fetch(config.Livemap.Map,{signal: RequestTimeout,headers:{'User-Agent':`${uaString+'Map'}`}}).catch((err:Error)=>logger.error(err.message))
   cb(map)
 }
 
 async function fetchXMLStats(cb){
-  const result = await Axios('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-stats.json?code='+config.FSServer.APICode, {timeout:RequestTimeout,headers:{'User-Agent':`${uaString+'DSS'}`}})
+  const result = await cringePromise('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-stats.json?code='+config.FSServer.APICode, 'DSS')
+  //const result = await fetch('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-stats.json?code='+config.FSServer.APICode, {signal:RequestTimeout,headers:{'User-Agent':`${uaString+'DSS'}`}})
   cb(result)
 }
 
@@ -28,14 +33,18 @@ function fetchServerOnly(cb){
 
 async function fetchEntities(cb){
   fetchXMLStats(async(result)=>cb({
-    server: console.log('server'), //new Server(await result.json().then(s=>s.server)),
-    slots: console.log(result.data) //new Slots((await result.json().then(s=>s.slots)) === undefined ? 0 : (await result.json().then(s=>s.slots)))
+    server: /*console.log('server'),*/ new Server(await result[0].clone().json().then(s=>s.server)),
+    slots: /*console.log(await result[0].json())*/ new Slots(await result[0].clone().json().then(s=>s.slots) === undefined ? 0 : await result[0].clone().json().then(s=>s.slots)),
+    players: player.getPlayers(await result[0].clone().json().then(p=>p?.players) == undefined ? 0 : await result[0].clone().json().then(p=>p.players)),
+    vehicles: vehicle.getVehicles(await result[0].clone().json().then(v=>v.vehicles), await result[0].clone().json().then(s=>s.server.mapSize))
   }))
 }
 
 async function fetchCSG(cb){
-  const result = await Axios('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-savegame.html?code='+config.FSServer.APICode+'&file=careerSavegame', {timeout:RequestTimeout,headers:{'User-Agent':`${uaString+'CSG'}`}})
-  const x = utility.c2json(result.data)
+  const result = await cringePromise('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-savegame.html?code='+config.FSServer.APICode+'&file=careerSavegame', 'CSG')
+  //const result = await fetch('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-savegame.html?code='+config.FSServer.APICode+'&file=careerSavegame', {signal:RequestTimeout,headers:{'User-Agent':`${uaString+'CSG'}`}})
+  //console.log(await result[0].text())
+  const x:any = utility.c2json(await result[0].clone().text())
   cb(new Game(x))
 }
 

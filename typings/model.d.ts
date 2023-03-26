@@ -1,12 +1,13 @@
-export interface Server {
+export interface ServerTyping {
   name:string
   version:string
 }
-export interface Slots {
+export interface SlotsTyping {
   numUsed:number
   capacity:number
 }
 export interface PlayerProperty {
+  [x: string]: any
   _text:string
   _attributes: {
     isUsed:boolean
@@ -26,7 +27,7 @@ export interface VehicleProperty {
     controller:string
   }
 }
-export interface Game {
+export interface GameTyping {
   settings: {
     savegameName:XMLTypings
     creationDate:XMLTypings
