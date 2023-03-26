@@ -1,6 +1,6 @@
 {
   "name": "toasty",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Map view of Farming Simulator 22 server",
   "main": "server/app.ts",
   "scripts": {
