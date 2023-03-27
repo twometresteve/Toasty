@@ -18,7 +18,7 @@ router.get('*', function(req:express.Request, res:express.Response, next){
 router.get('/', function(req:express.Request, res:express.Response, next){
   async.parallel({
     savegame: function(cb){
-      api.fetchCSG((res)=>cb(null,res))
+      api.fetchCSG(res=>cb(null,res))
     }
   },
   function(err,results){

@@ -1,36 +1,32 @@
 import lodash from 'lodash';
 import utility from '../libraries/utility';
 import icons from '../libraries/icons';
-import {VehicleProperty} from '../../typings/model';
 
 var mapSize;
 
-function getVehicles(vehicles:string[], map:string){
+function getVehicles(vehicles, map:number){
   const results = [];
   mapSize = map
 
-  if (!Array.isArray(vehicles)){
-    vehicles = [vehicles]
-  }
+  if (!Array.isArray(vehicles)) vehicles = [vehicles]
 
   vehicles.forEach(vehicle=>{
-    console.log(vehicle)
-    if (!lodash.isEmpty(vehicle)) results.push(new this.Vehicle(vehicle))
+    if (!lodash.isEmpty(vehicle)) results.push(new Vehicle(vehicle))
   })
   return results
 }
 
-function Vehicle(vehicle:VehicleProperty){
-  const coords = utility.calcCoords(mapSize, vehicle._attributes.x, vehicle._attributes.z)
+function Vehicle(vehicle){
+  const coords = utility.calcCoords(mapSize, vehicle.x, vehicle.z)
 
-  this.name = vehicle._attributes.name
+  this.name = vehicle.name
   this.posx = coords.x
   this.posy = coords.y
-  this.type = vehicle._attributes.type
-  this.category = vehicle._attributes.category
-  this.controller = vehicle._attributes.controller
-  this.icon = icons.getIcon(vehicle._attributes)
-  this.popup = icons.getIconPopup(vehicle._attributes)
+  this.type = vehicle.type
+  this.category = vehicle.category
+  this.controller = vehicle.controller
+  this.icon = icons.getIcon(vehicle)
+  this.popup = icons.getIconPopup(vehicle)
 }
 
 export default {getVehicles, Vehicle}

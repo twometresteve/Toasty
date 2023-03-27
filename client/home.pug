@@ -32,10 +32,10 @@ block content
             span.float-end #{game.savegameName}
           li.list-group-item
             b=("Creation Date")
-            span.float-end #{game.SaveCreation}
+            span.float-end #{game.creationDate}
           li.list-group-item
             b=("Map")
-            span.float-end #{game.mapname}
+            span.float-end #{game.mapTitle}
           li.list-group-item
             b=("Server Version")
             span.float-end #{server.version}
@@ -43,7 +43,7 @@ block content
             b=("Time Scale")
             span.float-end #{game.timeScale}
           li.list-group-item
-            b=("Save Interval")
+            b=("Autosave Interval")
             span.float-end #{game.saveInterval}
           li.list-group-item
             b=("Economy Difficulty")

@@ -1,13 +1,12 @@
 import xjs from 'xml-js';
 
-export function c2json(xml:any){
-  var res = xjs.xml2json(xml,{compact:true,spaces:2});
+export function c2json(xml){
+  var res = xjs.xml2js(xml,{compact:true});
   return res
 }
 
 export function filterFloat(value:string){
-  if (/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
-    .test(value))
+  if (/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/.test(value))
   return Number(value);
   return NaN
 }
@@ -28,9 +27,7 @@ export function formatTime(oldTime:number){
   if(oldTime>=60){
     var Hours=Math.floor(Number(oldTime)/60);
     var Minutes=(Number(oldTime)-(Hours*60));
-  }else{
-    Minutes=Number(oldTime)
-  }
+  } else Minutes=Number(oldTime)
   if(Hours>=24){
     var Days=Math.floor(Number(Hours)/24);
     var Hours=(Hours-(Days*24));
@@ -43,6 +40,4 @@ export function formatNumber(number:number,digits:number,icon:string){
   return n.toLocaleString(undefined,{minimumFractionDigits:digits})+icon;
 }
 
-export default {
-  c2json, filterFloat, calcCoords, formatTime, formatNumber
-}
+export default {c2json, filterFloat, calcCoords, formatTime, formatNumber}

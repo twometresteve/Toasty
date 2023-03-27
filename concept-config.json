@@ -1,0 +1,19 @@
+{
+  "Livemap": {
+    "Port": 8000,
+    "Map": {
+      "Silage": "",
+      "Grain": ""
+    }
+  },
+  "FSServer": {
+    "Silage": {
+      "PanelURL": "",
+      "APICode": ""
+    },
+    "Grain": {
+      "PanelURL": "",
+      "APICode": ""
+    }
+  }
+}

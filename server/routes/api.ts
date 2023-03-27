@@ -3,10 +3,12 @@ import api from '../api';
 import geo from '../libraries/geojson';
 const router = express.Router();
 
-router.get('/map.jpg', function (req: express.Request, res: express.Response, next) {
-  api.fetchMap((map)=>{
+router.get('/map.png', function (req: express.Request, res: express.Response, next) {
+  api.fetchMap(async(map)=>{
+    console.log('Map fetch in progress...');
     res.set({'Content-Type':'image/png'});
-    res.send(map?.body)
+    console.log(await map.headers)
+    res.send(await map.body)
   })
 })
 

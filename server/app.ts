@@ -31,13 +31,13 @@ server.use(function(req:express.Request, res:express.Response, next){
   next();
 })
 
+server.use('/',viewRouter);
+server.use('/api',apiRouter);
+
 server.use(function(req:express.Request, res:express.Response, next){
   if (res.status(404)) next(createError(404))
   else next(createError(res.status(503)))
 })
-
-server.use('/',viewRouter);
-server.use('/api',apiRouter);
 
 server.use(function(err, req:express.Request, res:express.Response, next){
   logger.JSON(err.message);
