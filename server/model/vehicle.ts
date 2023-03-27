@@ -16,7 +16,12 @@ function getVehicles(vehicles, map:number){
   return results
 }
 
-function Vehicle(vehicle){
+function Vehicle(vehicle){/*
+  var vehicleReport = [];
+  if (vehicle.controller == undefined) return;
+  vehicleReport.push(['Equipment', vehicle]);
+  console.log(vehicleReport);*/
+  
   const coords = utility.calcCoords(mapSize, vehicle.x, vehicle.z)
 
   this.name = vehicle.name
