@@ -2,13 +2,11 @@ import lodash from 'lodash';
 import utility from '../libraries/utility';
 import icons from '../libraries/icons';
 
-var mapSize;
+var mapSize:number;
 
 function getVehicles(vehicles, map:number){
   const results = [];
   mapSize = map
-
-  if (!Array.isArray(vehicles)) vehicles = [vehicles]
 
   vehicles.forEach(vehicle=>{
     if (!lodash.isEmpty(vehicle)) results.push(new Vehicle(vehicle))
@@ -16,12 +14,7 @@ function getVehicles(vehicles, map:number){
   return results
 }
 
-function Vehicle(vehicle){/*
-  var vehicleReport = [];
-  if (vehicle.controller == undefined) return;
-  vehicleReport.push(['Equipment', vehicle]);
-  console.log(vehicleReport);*/
-  
+function Vehicle(vehicle){
   const coords = utility.calcCoords(mapSize, vehicle.x, vehicle.z)
 
   this.name = vehicle.name

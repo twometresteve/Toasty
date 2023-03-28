@@ -10,7 +10,7 @@ block content
           if players.length>0
             each player in players
               li.list-group-item=player.name
-                if player.admin=="true"
+                if player.admin===true
                   span.top-0.ms-1.badge.square-pill.bg-info
                     | Admin
                 span.float-end=player.uptime
@@ -40,7 +40,7 @@ block content
             b=("Server Version")
             span.float-end #{server.version}
           li.list-group-item
-            b=("Time Scale")
+            b=("Timescale")
             span.float-end #{game.timeScale}
           li.list-group-item
             b=("Autosave Interval")

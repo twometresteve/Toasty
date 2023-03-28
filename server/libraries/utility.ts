@@ -11,7 +11,7 @@ export function filterFloat(value:string){
   return NaN
 }
 
-export function calcCoords(size:undefined|number,x:number,y:number){
+export function calcCoords(size:number,x:number,y:number){
   var newX=null
   var newY=null
   if(x!=null&&y!=null){

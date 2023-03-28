@@ -1,5 +1,5 @@
 import utility from './libraries/utility';
-import logger from './libraries/logger';
+import axios from 'axios';
 import {version} from './libraries/version';
 import config from '../config.json';
 import {Config} from '../typings/config';
@@ -10,7 +10,6 @@ import vehicle from './model/vehicle';
 
 config as Config;
 const uaString = `Toasty ${version}/`;
-//const RequestTimeout = AbortSignal.timeout(25000);
 
 async function cringePromise(url:string, uaSuffix:string){
   return await Promise.all([await fetch(url, {headers:{'User-Agent':`${uaString+uaSuffix}`}})]).catch(err=>{
@@ -19,7 +18,7 @@ async function cringePromise(url:string, uaSuffix:string){
 }
 
 async function fetchMap(cb){
-  const map = await fetch(config.Livemap.Map,{headers:{'User-Agent':`${uaString+'Map'}`}})
+  const map = await axios.get(config.Livemap.Map,{responseType:'arraybuffer', headers:{'User-Agent':`${uaString+'Map'}`}})
   cb(map)
 }
 
@@ -29,13 +28,13 @@ async function fetchXMLStats(cb){
 }
 
 function fetchServerOnly(cb){
-  fetchXMLStats((result)=>cb(new Server(result.Server)));
+  fetchXMLStats(async result=>cb(new Server(await result[0].clone().json().then(s=>s.server))));
 }
 
-async function fetchEntities(cb){
+function fetchEntities(cb){
   fetchXMLStats(async(result)=>cb({
     server: new Server(await result[0].clone().json().then(s=>s.server)),
-    slots: new Slots(await result[0].clone().json().then(s=>s.slots) === undefined ? 0 : await result[0].clone().json().then(s=>s.slots)),
+    slots: new Slots(await result[0].clone().json().then(s=>s.slots)),
     players: player.getPlayers(await result[0].clone().json().then(p=>p.slots.players)),
     vehicles: vehicle.getVehicles(await result[0].clone().json().then(v=>v.vehicles), await result[0].clone().json().then(s=>s.server.mapSize))
   }))

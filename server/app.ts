@@ -4,6 +4,7 @@ import {version} from './libraries/version';
 import engines from 'consolidate';
 import path from 'node:path';
 import api from './api';
+import icons from './libraries/icons';
 import cookieParser from 'cookie-parser';
 import viewRouter from './routes/index';
 import apiRouter from './routes/api';
@@ -27,7 +28,7 @@ server.use(function(req:express.Request, res:express.Response, next){
   res.locals.currentPage = req.url;
   res.locals.config = config;
   res.locals.version = version;
-  res.locals.icons = require('./libraries/icons').icons;
+  res.locals.icons = icons.icons
   next();
 })
 

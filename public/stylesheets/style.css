@@ -4,7 +4,10 @@ body{
   font-size: 14px;
   font-family:"Roboto", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
   -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+}
+
+.dark-mode {
+  background-color: #090909;
 }
 
 a {
@@ -20,6 +23,13 @@ a:hover {
 .card-header:first-child,
 .card-footer:last-child {
   border-radius: 0;
+}
+
+.card.bg-warn > .card-header {
+  background-color: #ecb008;
+  color:#000;
+  font-size: 15px;
+  font-weight: normal;
 }
 
 .list-group-item {
@@ -50,7 +60,6 @@ main > .container {
 
 .navbar {
   background-color: #000000;
-  box-shadow: 0px 2px 4px 0px rgba(rgb(0, 0, 0), rgb(241, 8, 8), rgb(0, 0, 0),.3);
 }
 .footer {
   background-color: #000000;
@@ -59,31 +68,7 @@ main > .container {
 }
 
 #map{ height:750px; width:750px; }
-.leaflet-marker-icon { filter: drop-shadow(0 2px 1px #444); }
-
-.forecast {
-  text-align: right;
-}
-
-.forecast::after {
-  background-size: 7px 7px;
-  display: inline-block;
-  margin-left: 5px;
-  content: "";
-}
-
-.forecast-up::after {
-  content: "🟢";
-}
-
-.forecast-down::after {
-  content: "🔴";
-}
-
-.eco-table-hover>tbody>tr:hover>*,
-.eco-table-hover>tbody>tr.eco-table-active>* {
-  background-color: #9f9f9f;
-}
+/*.leaflet-marker-icon { filter: drop-shadow(0 2px 1px #444); }*/
 
 .dropdown-menu {
   font-size: 14px !important;

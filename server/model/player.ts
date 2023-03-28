@@ -10,13 +10,13 @@ function getPlayers(players){
 }
 
 function Player(player){
-  const coords = utility.calcCoords(undefined,player.x, player.z)
+  //const coords = utility.calcCoords(undefined,player.x, player.z)
 
   this.name = player.name
   this.uptime = utility.formatTime(player.uptime as number)
   this.admin = player.isAdmin
-  this.posx = coords.x
-  this.posy = coords.y
+  //this.posx = coords.x
+  //this.posy = coords.y
 }
 
 export default {getPlayers, Player}

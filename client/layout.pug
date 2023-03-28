@@ -3,7 +3,7 @@ mixin navigation
     .container
       a.navbar-brand(href='/')
         img.d-inline-block.align-center(src="/images/Toasty_Favicon.png", height='35', title='Go touch grass now!')
-        span.d-inline-block.ms-2 #{(server.name == undefined ? 'Offline' : server.name.replace('! ! IRTGaming|', ''))}
+        span.d-inline-block.ms-2 #{(server.name === undefined ? 'Offline' : server.name.replace('! ! IRTGaming|', ''))}
 
 mixin scripts()
   script(type='text/javascript').
@@ -22,6 +22,14 @@ mixin scripts()
 mixin footer()
   footer.footer.mt-auto.py-3
     .container
-      span.text-muted Toasty © 2023 
+      span.text-muted
+        | Toasty © 2023 - Rebuilt and converted on top of Oasis
       span.text-muted.float-end
         | Toasty #{version} - Farming Simulator Livemap
+
+mixin newServerError()
+  if isNewServer
+    .row.justify-content-center.new-server-error
+      .col-xl-12
+        .card.bg-warn.mb-3.small.shadow-sm
+          .card-header.text-center="Either the autosave has ran or the server doesn't have a savegame."

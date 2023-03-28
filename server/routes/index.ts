@@ -5,29 +5,33 @@ import api from '../api';
 const router = express.Router();
 
 var _server = null
+  , _savegame = null;
 
 router.get('*', function(req:express.Request, res:express.Response, next){
-  api.fetchEntities((entities)=>{
-    _server = entities;
-    next();
+  async.parallel({
+    game: function(cb){
+      api.fetchCSG(res=>cb(null, res))
+    },
+    entities: function(cb){
+      api.fetchEntities(res=>cb(null, res))
+    }
+  },
+  function(err,results){
+    _server = results.entities
+    _savegame = results.game
+    res.locals.isNewServer = _savegame.isNewServer
+    next()
   })
   const ip = req.header['x-forwarded-for'] || req.socket.remoteAddress.replace('::ffff:', '')
   logger.info(ip + ' :: ' + req.originalUrl)
 })
 
 router.get('/', function(req:express.Request, res:express.Response, next){
-  async.parallel({
-    savegame: function(cb){
-      api.fetchCSG(res=>cb(null,res))
-    }
-  },
-  function(err,results){
-    res.render('home.pug',{
-      game: results.savegame,
-      slots: _server.slots,
-      server: _server.server,
-      players: _server.players
-    })
+  res.render('home.pug',{
+    game: _savegame,
+    slots: _server.slots,
+    server: _server.server,
+    players: _server.players
   })
 })
 
