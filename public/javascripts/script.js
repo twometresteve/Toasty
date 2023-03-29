@@ -7,15 +7,29 @@ function isUrl(needle) {
 function SwitchToDarkSide(){
   if (!localStorage.getItem('isDark')) {
     document.body.classList.toggle('dark-mode')
+    document.querySelectorAll('.card').forEach(x=>x.style.setProperty('background-color', '#090909'))
+    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-color', '#fff'))
+    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-bg', '#171717'))
+    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-border-color', 'rgba(255, 255, 255, 0.13)'))
     localStorage.setItem('isDark', true)
   } else {
     document.body.classList.toggle('dark-mode')
+    document.querySelectorAll('.card').forEach(x=>x.style.removeProperty('background-color'))
+    document.querySelectorAll('.list-group').forEach(x=>x.style.removeProperty('--bs-list-group-color'))
+    document.querySelectorAll('.list-group').forEach(x=>x.style.removeProperty('--bs-list-group-bg'))
+    document.querySelectorAll('.list-group').forEach(x=>x.style.removeProperty('--bs-list-group-border-color'))
     localStorage.removeItem('isDark')
   }
 }
 
 $(document).ready(function() {
-  if (localStorage.getItem('isDark')) document.body.classList.toggle('dark-mode');
+  if (localStorage.getItem('isDark')) {
+    document.body.classList.toggle('dark-mode')
+    document.querySelectorAll('.card').forEach(x=>x.style.setProperty('background-color', '#090909'))
+    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-color', '#fff'))
+    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-bg', '#171717'))
+    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-border-color', 'rgba(255, 255, 255, 0.13)'))
+  }
 
   var map = L.map('map', { crs: L.CRS.Simple, maxZoom: 5 })
 
@@ -41,7 +55,6 @@ $(document).ready(function() {
 
 function onEachFeature(feature, layer) {
   if (layer instanceof L.Marker) {
-    console.log('yoooo im hereeeeeee')
     layer.bindPopup(layer.feature.properties.popup)
     var customIcon = L.icon({
       iconUrl: '/images/icons/'+layer.feature.properties.icon.icon,
@@ -50,6 +63,5 @@ function onEachFeature(feature, layer) {
       popupAnchor: [0, -10]
     })
     layer.setIcon(customIcon)
-    console.log(layer)
   }
 };
