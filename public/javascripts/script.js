@@ -3,11 +3,11 @@
 function isUrl(needle) {
   return window.location.href.indexOf(needle) > -1 ? true : false;
 }
-/*
+
 function SwitchToDarkSide(){
   var elem = document.body;
   elem.classList.toggle('dark-mode')
-}*/
+}
 
 $(document).ready(function() {
   var map = L.map('map', { crs: L.CRS.Simple, maxZoom: 5 })

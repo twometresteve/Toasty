@@ -1,11 +1,10 @@
 {
   "name": "toasty",
-  "version": "1.1.22-beta",
+  "version": "1.2.0-beta",
   "description": "Map view of Farming Simulator 22 server",
   "main": "server/app.ts",
   "scripts": {
-    "version": "npx genversion --es6 server/libraries/version.ts",
-    "start": "ts-node server/app.ts"
+    "version": "npx genversion --es6 server/libraries/version.ts"
   },
   "repository": {
     "type": "git",

@@ -2,8 +2,11 @@ mixin navigation
   nav.navbar.fixed-top.navbar-expand-lg.navbar-dark
     .container
       a.navbar-brand(href='/')
-        img.d-inline-block.align-center(src="/images/Toasty_Favicon.png", height='35', title='Go touch grass now!')
+        img.d-inline-block.align-center(src="/images/Toasty_Favicon.png", height='40', title='Go touch grass now!')
         span.d-inline-block.ms-2 #{(server.name === undefined ? 'Offline' : server.name.replace('! ! IRTGaming|', ''))}
+      ul.navbar.nav
+        li.nav-item
+          a.button(type='button', onclick='SwitchToDarkSide()') Toggle theme
 
 mixin scripts()
   script(type='text/javascript').
