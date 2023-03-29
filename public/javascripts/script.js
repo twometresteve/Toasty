@@ -5,11 +5,18 @@ function isUrl(needle) {
 }
 
 function SwitchToDarkSide(){
-  var elem = document.body;
-  elem.classList.toggle('dark-mode')
+  if (!localStorage.getItem('isDark')) {
+    document.body.classList.toggle('dark-mode')
+    localStorage.setItem('isDark', true)
+  } else {
+    document.body.classList.toggle('dark-mode')
+    localStorage.removeItem('isDark')
+  }
 }
 
 $(document).ready(function() {
+  if (localStorage.getItem('isDark')) document.body.classList.toggle('dark-mode');
+
   var map = L.map('map', { crs: L.CRS.Simple, maxZoom: 5 })
 
   var bounds = [[-375, -375], [375, 375]];
