@@ -22,7 +22,7 @@ router.get('*', function(req:express.Request, res:express.Response, next){
     res.locals.isNewServer = _savegame.isNewServer
     next()
   })
-  const ip = req.header['x-forwarded-for'] || req.socket.remoteAddress.replace('::ffff:', '')
+  const ip = req.header('x-forwarded-for') || req.socket.remoteAddress.replace('::ffff:', '')
   logger.info(ip + ' :: ' + req.originalUrl)
 })
 
