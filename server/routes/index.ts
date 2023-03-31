@@ -33,7 +33,7 @@ router.get('/', function(req:express.Request, res:express.Response, next){
   })
 })
 
-router.get('/:server', function(req:express.Request, res:express.Response, next){
+router.get('/silage', function(req:express.Request, res:express.Response, next){
   res.render('home.pug',{
     game: _savegame,
     slots: _server.slots,
