@@ -1,0 +1,10 @@
+{
+  "Livemap": {
+    "Port": 8000,
+    "Map": "https://toast-server.net/SilageOverlay.png"
+  },
+  "FSServer": {
+    "PanelURL": "64.85.246.229:8080",
+    "APICode": "4a6471d0d9f47a4d42f77c275408ca63"
+  }
+}

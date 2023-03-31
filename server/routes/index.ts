@@ -27,6 +27,13 @@ router.get('*', function(req:express.Request, res:express.Response, next){
 })
 
 router.get('/', function(req:express.Request, res:express.Response, next){
+  res.render('serverlist.pug', {
+    server: _server.server,
+    name: _server.server.name = 'Toasty - Server list'
+  })
+})
+
+router.get('/:server', function(req:express.Request, res:express.Response, next){
   res.render('home.pug',{
     game: _savegame,
     slots: _server.slots,

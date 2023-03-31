@@ -11,6 +11,7 @@ function SwitchToDarkSide(){
     document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-color', '#fff'))
     document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-bg', '#171717'))
     document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-border-color', 'rgba(255, 255, 255, 0.13)'))
+    document.querySelectorAll('.list-group-item > a').forEach(x=>x.style.setProperty('color', '#afe0f3'))
     localStorage.setItem('isDark', true)
   } else {
     document.body.classList.toggle('dark-mode')
@@ -18,6 +19,7 @@ function SwitchToDarkSide(){
     document.querySelectorAll('.list-group').forEach(x=>x.style.removeProperty('--bs-list-group-color'))
     document.querySelectorAll('.list-group').forEach(x=>x.style.removeProperty('--bs-list-group-bg'))
     document.querySelectorAll('.list-group').forEach(x=>x.style.removeProperty('--bs-list-group-border-color'))
+    document.querySelectorAll('.list-group-item > a').forEach(x=>x.style.setProperty('color', '#000'))
     localStorage.removeItem('isDark')
   }
 }
@@ -29,28 +31,31 @@ $(document).ready(function() {
     document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-color', '#fff'))
     document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-bg', '#171717'))
     document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-border-color', 'rgba(255, 255, 255, 0.13)'))
+    document.querySelectorAll('.list-group-item > a').forEach(x=>x.style.setProperty('color', '#afe0f3'))
+  } else document.querySelectorAll('.list-group-item > a').forEach(x=>x.style.setProperty('color', '#000'))
+
+  if (['/silage', '/grain'].includes(window.location.pathname)) {
+    var map = L.map('map', { crs: L.CRS.Simple, maxZoom: 5 })
+
+    var bounds = [[-375, -375], [375, 375]];
+    L.imageOverlay('/api/map.jpg', bounds).addTo(map);
+    map.fitBounds([[-375, -375], [375, 375]])
+    map.setMaxBounds([[-375, -375], [375, 375]])
+
+    map.on('drag', function () {
+      map.panInsideBounds([[-374, -374], [374, 374]], { animate: false })
+    })
+
+    $.ajax({
+      type: "GET",
+      url: "/api/geo.json",
+      dataType: "json",
+      success: function (geojson) {
+        console.log('aywhoo')
+        new L.GeoJSON(geojson, { onEachFeature: onEachFeature }).addTo(map);
+      }
+    });
   }
-
-  var map = L.map('map', { crs: L.CRS.Simple, maxZoom: 5 })
-
-  var bounds = [[-375, -375], [375, 375]];
-  L.imageOverlay('/api/map.jpg', bounds).addTo(map);
-  map.fitBounds([[-375, -375], [375, 375]])
-  map.setMaxBounds([[-375, -375], [375, 375]])
-
-  map.on('drag', function () {
-    map.panInsideBounds([[-375, -375], [375, 375]], { animate: false })
-  })
-
-  $.ajax({
-    type: "GET",
-    url: "/api/geo.json",
-    dataType: "json",
-    success: function (geojson) {
-      console.log('aywhoo')
-      new L.GeoJSON(geojson, { onEachFeature: onEachFeature }).addTo(map);
-    }
-  });
 });
 
 function onEachFeature(feature, layer) {

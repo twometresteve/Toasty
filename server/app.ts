@@ -28,7 +28,7 @@ server.use(function(req:express.Request, res:express.Response, next){
   res.locals.currentPage = req.url;
   res.locals.config = config;
   res.locals.version = version;
-  res.locals.icons = icons.icons
+  res.locals.icons = icons.icons;
   next();
 })
 

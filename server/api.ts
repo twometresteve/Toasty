@@ -18,12 +18,12 @@ async function cringePromise(url:string, uaSuffix:string){
 }
 
 async function fetchMap(cb){
-  const map = await axios.get(config.Livemap.Map,{responseType:'arraybuffer', headers:{'User-Agent':`${uaString+'Map'}`}})
+  const map = await axios.get(config.Livemap.Map.Silage,{responseType:'arraybuffer', headers:{'User-Agent':`${uaString+'Map'}`}})
   cb(map)
 }
 
 async function fetchXMLStats(cb){
-  const result = await cringePromise('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-stats.json?code='+config.FSServer.APICode, 'DSS');
+  const result = await cringePromise('http://'+config.FSServer.Silage.PanelURL+'/feed/dedicated-server-stats.json?code='+config.FSServer.Silage.APICode, 'DSS');
   cb(result)
 }
 
@@ -41,7 +41,7 @@ function fetchEntities(cb){
 }
 
 async function fetchCSG(cb){
-  const result = await cringePromise('http://'+config.FSServer.PanelURL+'/feed/dedicated-server-savegame.html?code='+config.FSServer.APICode+'&file=careerSavegame', 'CSG')
+  const result = await cringePromise('http://'+config.FSServer.Silage.PanelURL+'/feed/dedicated-server-savegame.html?code='+config.FSServer.Silage.APICode+'&file=careerSavegame', 'CSG')
   const x:any = utility.c2json(await result[0].clone().text())
   cb(new Game(x))
 }
