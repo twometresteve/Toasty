@@ -29,7 +29,7 @@ router.get('*', function(req:express.Request, res:express.Response, next){
 router.get('/', function(req:express.Request, res:express.Response, next){
   res.render('serverlist.pug', {
     server: _server.server,
-    name: _server.server.name = 'Toasty - Server list'
+    name: _server.server.name = 'Server list'
   })
 })
 
