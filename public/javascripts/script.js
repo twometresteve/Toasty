@@ -4,22 +4,39 @@ function isUrl(needle) {
   return window.location.href.indexOf(needle) > -1 ? true : false;
 }
 
+function queryAllSet(card, listgroup, listgroupitem){
+  const cardQuery = document.querySelectorAll(card);
+  const listgroupQuery = document.querySelectorAll(listgroup);
+  const listgroupitemQuery = document.querySelectorAll(listgroupitem);
+
+  cardQuery.forEach(x=>x.style.setProperty('background-color', '#090909'));
+  listgroupQuery.forEach(x=>x.style.setProperty('--bs-list-group-color', '#fff'));
+  listgroupQuery.forEach(x=>x.style.setProperty('--bs-list-group-bg', '#171717'));
+  listgroupQuery.forEach(x=>x.style.setProperty('--bs-list-group-border-color', 'rgba(255, 255, 255, 0.13)'));
+  listgroupitemQuery.forEach(x=>x.style.setProperty('color', '#afe0f3'));
+}
+
+function queryAllRemove(card, listgroup, listgroupitem){
+  const cardQuery = document.querySelectorAll(card);
+  const listgroupQuery = document.querySelectorAll(listgroup);
+  const listgroupitemQuery = document.querySelectorAll(listgroupitem);
+
+  cardQuery.forEach(x=>x.style.removeProperty('background-color'));
+  listgroupQuery.forEach(x=>x.style.removeProperty('--bs-list-group-color'));
+  listgroupQuery.forEach(x=>x.style.removeProperty('--bs-list-group-bg'));
+  listgroupQuery.forEach(x=>x.style.removeProperty('--bs-list-group-border-color'));
+  listgroupitemQuery.forEach(x=>x.style.setProperty('color', '#000'));
+}
+
+
 function SwitchToDarkSide(){
   if (!localStorage.getItem('isDark')) {
     document.body.classList.toggle('dark-mode')
-    document.querySelectorAll('.card').forEach(x=>x.style.setProperty('background-color', '#090909'))
-    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-color', '#fff'))
-    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-bg', '#171717'))
-    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-border-color', 'rgba(255, 255, 255, 0.13)'))
-    document.querySelectorAll('.list-group-item > a').forEach(x=>x.style.setProperty('color', '#afe0f3'))
+    queryAllSet('.card', '.list-group', '.list-group-item > a')
     localStorage.setItem('isDark', true)
   } else {
     document.body.classList.toggle('dark-mode')
-    document.querySelectorAll('.card').forEach(x=>x.style.removeProperty('background-color'))
-    document.querySelectorAll('.list-group').forEach(x=>x.style.removeProperty('--bs-list-group-color'))
-    document.querySelectorAll('.list-group').forEach(x=>x.style.removeProperty('--bs-list-group-bg'))
-    document.querySelectorAll('.list-group').forEach(x=>x.style.removeProperty('--bs-list-group-border-color'))
-    document.querySelectorAll('.list-group-item > a').forEach(x=>x.style.setProperty('color', '#000'))
+    queryAllRemove('.card', '.list-group', '.list-group-item > a')
     localStorage.removeItem('isDark')
   }
 }
@@ -27,11 +44,7 @@ function SwitchToDarkSide(){
 $(document).ready(function() {
   if (localStorage.getItem('isDark')) {
     document.body.classList.toggle('dark-mode')
-    document.querySelectorAll('.card').forEach(x=>x.style.setProperty('background-color', '#090909'))
-    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-color', '#fff'))
-    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-bg', '#171717'))
-    document.querySelectorAll('.list-group').forEach(x=>x.style.setProperty('--bs-list-group-border-color', 'rgba(255, 255, 255, 0.13)'))
-    document.querySelectorAll('.list-group-item > a').forEach(x=>x.style.setProperty('color', '#afe0f3'))
+    queryAllSet('.card', '.list-group', '.list-group-item > a')
   } else document.querySelectorAll('.list-group-item > a').forEach(x=>x.style.setProperty('color', '#000'))
 
   if (['/silage', '/grain'].includes(window.location.pathname)) {
