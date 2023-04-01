@@ -5,12 +5,14 @@
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "skipLibCheck": true,
     "target": "ESNext",
     "module": "NodeNext",
     "baseUrl": "./",
     "moduleResolution": "nodenext",
     "typeRoots": [ "node_modules/@types", "./typings" ],
+    "outDir": "built"
   },
-"include": [ "node_modules/@types", "**/*" ],
-"exclude": [ "node_modules", ".git" ],
+"include": [ "node_modules/@types", "./server" ],
+"exclude": [ "node_modules", ".git" ]
 }

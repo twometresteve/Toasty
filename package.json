@@ -1,17 +1,19 @@
 {
   "name": "toasty",
-  "version": "1.3.17-beta",
+  "version": "1.4.1-beta",
   "description": "Map view of Farming Simulator 22 server",
-  "main": "server/app.ts",
+  "main": "./built/server/app.js",
   "scripts": {
-    "version": "npx genversion --es6 server/libraries/version.ts"
+    "version": "npx genversion --es6 server/libraries/version.ts",
+    "build": "D:/Bots-Housing/Toasty/node_modules/.bin/tsc.cmd -p D:/Bots-Housing/Toasty/tsconfig.json",
+    "build-and-version": "npm run version && npm run build"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/AnxietyisReal/Toasty"
   },
   "author": "Toast",
-  "license": "GNU LGPLv3",
+  "license": "Unlicense",
   "dependencies": {
     "pug": "3.0.2",
     "axios": "1.3.4",

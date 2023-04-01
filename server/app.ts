@@ -15,13 +15,13 @@ import createError from 'http-errors';
 config as Config;
 const server:Express = express();
 
-server.set('views', path.join(__dirname, '../client'));
+server.set('views', path.join(__dirname, '../../client'));
 server.set('view engine', 'pug');
 server.engine('pug', engines.pug)
 
 server.use(express.json());
 server.use(express.urlencoded({extended:false}));
-server.use(express.static(path.join(__dirname, '../public')));
+server.use(express.static(path.join(__dirname, '../../public')));
 server.use(cookieParser());
 
 server.use(function(req:express.Request, res:express.Response, next){
