@@ -1,6 +1,6 @@
 {
   "name": "toasty",
-  "version": "1.4.1-beta",
+  "version": "1.4.4-beta",
   "description": "Map view of Farming Simulator 22 server",
   "main": "./built/server/app.js",
   "scripts": {
@@ -23,16 +23,16 @@
     "express": "4.18.2",
     "winston": "3.8.2",
     "genversion": "3.1.1",
-    "typescript": "5.0.2",
+    "typescript": "5.0.3",
     "http-errors": "2.0.0",
     "consolidate": "0.16.0",
     "cookie-parser": "1.4.6"
   },
   "devDependencies": {
     "@types/pug": "2.0.6",
-    "@types/node": "18.15.10",
+    "@types/node": "18.15.11",
     "@types/async": "3.2.18",
-    "@types/lodash": "4.14.191",
+    "@types/lodash": "4.14.192",
     "@types/express": "4.17.17",
     "@types/http-errors": "2.0.1",
     "@types/consolidate": "0.14.1",
