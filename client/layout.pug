@@ -41,3 +41,9 @@ mixin newServerError()
       .col-xl-12
         .card.bg-warn.mb-3.small.shadow-sm
           .card-header.text-center="Either the autosave has ran or the server doesn't have a savegame."
+
+mixin infoBanner()
+  .row.justify-content-center.new-server-error
+    .col-xl-12
+      .card.bg-info.mb-3.small.shadow-sm
+        .card-header.text-center="Reload the page once you have selected the server to fetch the correct info. It will be fixed at some point."

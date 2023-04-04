@@ -43,8 +43,6 @@ async function fetchMap(cb){
 async function fetchXMLStats(cb){
   updateServerOnPathChange();
   const server = await fetchServerFromDatabase(changeServerTo);
-  console.log(config.Livemap.PageURL);
-  console.log(server);
   const result = await cringePromise('http://'+server.ip+'/feed/dedicated-server-stats.json?code='+server.code, 'DSS');
   cb(result)
 }

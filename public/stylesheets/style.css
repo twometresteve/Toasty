@@ -32,6 +32,13 @@ a:hover {
   font-weight: normal;
 }
 
+.card.bg-info > .card-header {
+  background-color: #3eaae4;
+  color:#000;
+  font-size: 15px;
+  font-weight: normal;
+}
+
 .list-group-item {
   font-size: 11px;
   padding-top: 0.3rem;
