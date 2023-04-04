@@ -1,8 +1,11 @@
 import express from 'express';
 import async from 'async';
+import {Config} from 'typings/config';
+import config from '../../config.json';
 import logger from '../libraries/logger';
 import api from '../api';
 const router = express.Router();
+config as Config;
 
 var _server = null
   , _savegame = null;
@@ -24,6 +27,7 @@ router.get('*', function(req:express.Request, res:express.Response, next){
   })
   const ip = req.header('x-forwarded-for') || req.socket.remoteAddress.replace('::ffff:', '')
   logger.info(ip + ' :: ' + req.originalUrl)
+  config.Livemap.PageURL = req.originalUrl;
 })
 
 router.get('/', function(req:express.Request, res:express.Response, next){
@@ -34,6 +38,15 @@ router.get('/', function(req:express.Request, res:express.Response, next){
 })
 
 router.get('/silage', function(req:express.Request, res:express.Response, next){
+  res.render('home.pug',{
+    game: _savegame,
+    slots: _server.slots,
+    server: _server.server,
+    players: _server.players
+  })
+})
+
+router.get('/grain', function(req:express.Request, res:express.Response, next){
   res.render('home.pug',{
     game: _savegame,
     slots: _server.slots,

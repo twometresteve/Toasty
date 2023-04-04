@@ -4,6 +4,8 @@ import {version} from './libraries/version';
 import engines from 'consolidate';
 import path from 'node:path';
 import api from './api';
+import mongoose from 'mongoose';
+import {exec} from 'node:child_process';
 import icons from './libraries/icons';
 import cookieParser from 'cookie-parser';
 import viewRouter from './routes/index';
@@ -14,6 +16,20 @@ import createError from 'http-errors';
 
 config as Config;
 const server:Express = express();
+
+mongoose.set('strictQuery', true);
+mongoose.connect(config.Livemap.MongoDB,{
+  replicaSet: 'toastyy',
+  autoIndex: true,
+  keepAlive: true,
+  serverSelectionTimeoutMS: 15000,
+  waitQueueTimeoutMS: 50000,
+  socketTimeoutMS: 30000,
+  family: 4
+}).then(()=>logger.info('Successfully connected to MongoDB')).catch((error)=>{
+  logger.error(`Failed to connect to MongoDB\n${error.reason}`);
+  exec('pm2 restart Toasty')
+})
 
 server.set('views', path.join(__dirname, '../../client'));
 server.set('view engine', 'pug');

@@ -1,6 +1,6 @@
 {
   "name": "toasty",
-  "version": "1.4.4-beta",
+  "version": "1.5.2-beta",
   "description": "Map view of Farming Simulator 22 server",
   "main": "./built/server/app.js",
   "scripts": {
@@ -22,6 +22,7 @@
     "lodash": "4.17.21",
     "express": "4.18.2",
     "winston": "3.8.2",
+    "mongoose": "7.0.3",
     "genversion": "3.1.1",
     "typescript": "5.0.3",
     "http-errors": "2.0.0",

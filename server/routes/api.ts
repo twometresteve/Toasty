@@ -14,4 +14,8 @@ router.get('/geo.json', function (req: express.Request, res: express.Response, n
   api.fetchEntities(entities=>res.json(geo.createGeoJSON(geo.createObjects(entities.vehicles))))
 })
 
+router.get('/serverstats.json', function (req: express.Request, res: express.Response, next){
+  api.fetchCSG(csg=>res.json({'careerSavegame':csg}))
+})
+
 export default router
