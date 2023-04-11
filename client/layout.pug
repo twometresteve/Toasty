@@ -3,7 +3,7 @@ mixin navigation
     .container
       a.navbar-brand(href=currentPage)
         img.d-inline-block.align-center(src="/images/Toasty_Favicon.png", height='40', title='Go touch grass now!')
-        span.d-inline-block.ms-2 #{(server.name === '' ? 'Server Offline' : server.name.replace('! ! IRTGaming|', ''))}
+        span.d-inline-block.ms-2 #{(server.name === '' ? 'Server Offline' : server.name.replace('! ! IRTGaming | ', ''))}
       ul.navbar.nav
         li.nav-item
           a.button(href='/')=('Home')
