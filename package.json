@@ -1,12 +1,11 @@
 {
   "name": "toasty",
-  "version": "1.5.5-beta",
+  "version": "1.5.8-beta",
   "description": "Map view of Farming Simulator 22 server",
   "main": "./built/server/app.js",
   "scripts": {
     "version": "npx genversion --es6 server/libraries/version.ts",
-    "build": "D:/Bots-Housing/Toasty/node_modules/.bin/tsc.cmd -p D:/Bots-Housing/Toasty/tsconfig.json",
-    "build-and-version": "npm run version && npm run build"
+    "version:build": "npx genversion --es6 server/libraries/version.ts && tsc"
   },
   "repository": {
     "type": "git",
