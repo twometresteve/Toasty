@@ -104,6 +104,11 @@ const icons = {
     desc: 'Train carts',
     dimension: 12
   },
+  'traintimbertrailer': {
+    icon: 'train.png',
+    desc: 'Train timber carts',
+    dimension: 12
+  },
   'bigbags': {
     icon: 'crate.png',
     desc: 'Bigbags',
@@ -174,7 +179,7 @@ const icons = {
     desc: 'Auger wagons',
     dimension: 12
   },
-  'baleloader': {
+  'baleloaders': {
     icon: 'tool.png',
     desc: 'Bale loaders',
     dimension: 12
@@ -229,7 +234,7 @@ const icons = {
     desc: 'Mowers',
     dimension: 12
   },
-  'tedder': {
+  'tedders': {
     icon: 'tool.png',
     desc: 'Tedders',
     dimension: 12
@@ -258,6 +263,26 @@ const icons = {
     icon: 'harvester.png',
     desc: 'Vineyard Harvesters',
     dimension: 12
+  },
+  'mixerwagon': {
+    icon: 'tool.png',
+    desc: 'Mixer Wagons',
+    dimension: 12
+  },
+  'cranetrailer': {
+    icon: 'trailer.png',
+    desc: 'Forestry Trailers',
+    dimension: 12
+  },
+  'stumpcutter': {
+    icon: 'tool.png',
+    desc: 'Stump Cutters',
+    dimension: 12
+  },
+  'misc': {
+    icon: 'ropa.png',
+    desc: 'Misc.',
+    dimension: 12
   }
 }
 
@@ -281,6 +306,7 @@ const types = {
   'watertrailer': icons.watertrailer,
   'seeders': icons.seeders,
   'traintrailer': icons.traintrailer,
+  'traintimbertrailer': icons.traintimbertrailer,
   'bigbags': icons.bigbags,
   'bigbagpallets': icons.bigbagpallets,
   'pallets': icons.pallets,
@@ -295,7 +321,7 @@ const types = {
   'mowervehicles': icons.mowervehicles,
   'selfpropelledsprayer': icons.selfpropelledsprayer,
   'augerwagon': icons.augerwagon,
-  'baleloader': icons.baleloader,
+  'baleloader': icons.baleloaders,
   'baler': icons.baler,
   'balewrapper': icons.balewrapper,
   'cutter': icons.cutter,
@@ -306,12 +332,16 @@ const types = {
   'rollers': icons.rollers,
   'attachablefrontloader': icons.attachablefrontloader,
   'mower': icons.mower,
-  'tedder': icons.tedder,
+  'tedders': icons.tedders,
   'slurrytanks': icons.slurrytanks,
   'slurryvehicles': icons.slurryvehicles,
   'drivablemixerwagon': icons.drivablemixerwagon,
   'grapetools': icons.grapetools,
   'vineharvester': icons.vineharvester,
+  'mixerwagon': icons.mixerwagon,
+  'cranetrailer': icons.cranetrailer,
+  'stumpcutter': icons.stumpcutter,
+  'misc': icons.misc,
 }
 
 function getIcon(object){
