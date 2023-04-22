@@ -13,7 +13,7 @@ export default function Game(game:GameTyping){
   this.timeScale = utility.formatNumber(gameSettings?.timeScale._text == undefined ? 0 : Number(gameSettings.timeScale._text), 0, 'x')
   this.saveInterval = gameSettings?.autoSaveInterval._text == undefined ? '? mins' : utility.formatNumber(gameSettings.autoSaveInterval._text as number, 0, ' mins')
   this.economicDifficulty = gameSettings?.economicDifficulty._text == undefined ? 1 : gameSettings.economicDifficulty._text
-  this.fixedSeasonalVisuals = gameSettings?.fixedSeasonalVisuals._text == undefined ? 'nil' : gameSettings.fixedSeasonalVisuals._text
+  this.fixedSeasonalVisuals = gameSettings?.fixedSeasonalVisuals?._text == undefined ? 'nil' : gameSettings.fixedSeasonalVisuals._text
   this.growthMode = gameSettings?.growthMode._text == undefined ? '3' : gameSettings.growthMode._text
   this.fuelUsage = gameSettings?.fuelUsage._text == undefined ? '3' : gameSettings.fuelUsage._text
   this.dirtInterval = gameSettings?.dirtInterval._text == undefined ? '3' : gameSettings.dirtInterval._text
