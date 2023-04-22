@@ -54,6 +54,34 @@ block content
             if game.economicDifficulty=="3"
               span.float-end Hard
           li.list-group-item
+            b=("Fixed Visual Month")
+            if game.fixedSeasonalVisuals=="nil"
+              span.float-end Off
+            if game.fixedSeasonalVisuals=="1"
+              span.float-end March
+            if game.fixedSeasonalVisuals=="2"
+              span.float-end April
+            if game.fixedSeasonalVisuals=="3"
+              span.float-end May
+            if game.fixedSeasonalVisuals=="4"
+              span.float-end June
+            if game.fixedSeasonalVisuals=="5"
+              span.float-end July
+            if game.fixedSeasonalVisuals=="6"
+              span.float-end August
+            if game.fixedSeasonalVisuals=="7"
+              span.float-end September
+            if game.fixedSeasonalVisuals=="8"
+              span.float-end October
+            if game.fixedSeasonalVisuals=="9"
+              span.float-end November
+            if game.fixedSeasonalVisuals=="10"
+              span.float-end December
+            if game.fixedSeasonalVisuals=="11"
+              span.float-end January
+            if game.fixedSeasonalVisuals=="12"
+              span.float-end February
+          li.list-group-item
             b=("Growth Mode")
             if game.growthMode=="1"
               span.float-end Yes
