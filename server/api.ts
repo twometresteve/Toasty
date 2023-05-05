@@ -20,10 +20,10 @@ async function fetchServerFromDatabase(serverName:string){
 }
 
 function updateServerOnPathChange(){
-  if (config.Livemap.PageURL == '/grain') {
+  if (config.Livemap.PageURL === '/grain') {
     changeServerTo = 'irtGrain';
     changeMapTo = config.Livemap.Map.Grain
-  } else if (config.Livemap.PageURL == '/silage') {
+  } else if (config.Livemap.PageURL === '/silage') {
     changeServerTo = 'irtSilage';
     changeMapTo = config.Livemap.Map.Silage
   }

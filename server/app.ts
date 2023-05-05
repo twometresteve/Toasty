@@ -21,7 +21,6 @@ mongoose.set('strictQuery', true);
 mongoose.connect(config.Livemap.MongoDB,{
   replicaSet: 'toastyy',
   autoIndex: true,
-  keepAlive: true,
   serverSelectionTimeoutMS: 15000,
   waitQueueTimeoutMS: 50000,
   socketTimeoutMS: 30000,
