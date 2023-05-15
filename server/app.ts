@@ -3,6 +3,7 @@ import logger from './libraries/logger';
 import {version} from './libraries/version';
 import engines from 'consolidate';
 import path from 'node:path';
+import cron from 'node-cron';
 import api from './api';
 import mongoose from 'mongoose';
 import {exec} from 'node:child_process';
@@ -63,6 +64,15 @@ server.use(function(err, req:express.Request, res:express.Response, next){
       server: server,
       error: err
     });
+  })
+})
+
+cron.schedule('0 8-19 * * *', ()=>{
+  console.log('UPDATER :: Checking the repository for updates...');
+  exec('git pull && tsc',(err,stdout)=>{
+    if (err) console.error(err.message);
+    else if (stdout.includes('Already up to date')) console.log('UPDATER :: Already up to date with upstream repository.');
+    else exec('pm2 restart Toasty');
   })
 })
 
