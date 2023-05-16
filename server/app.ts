@@ -22,6 +22,8 @@ mongoose.set('strictQuery', true);
 mongoose.connect(config.Livemap.MongoDB,{
   replicaSet: 'toastyy',
   autoIndex: true,
+  authMechanism:'DEFAULT',
+  authSource: 'admin',
   serverSelectionTimeoutMS: 15000,
   waitQueueTimeoutMS: 50000,
   socketTimeoutMS: 30000,
