@@ -69,7 +69,7 @@ server.use(function(err, req:express.Request, res:express.Response, next){
   })
 })
 
-cron.schedule('0 8-19 * * *', ()=>{
+cron.schedule('0 11-21 * * *', ()=>{
   console.log('UPDATER :: Checking the repository for updates...');
   exec('git pull && tsc',(err,stdout)=>{
     if (err) console.error(err.message);
