@@ -283,6 +283,11 @@ const icons = {
     icon: 'ropa.png',
     desc: 'Misc.',
     dimension: 12
+  },
+  'controller': {
+    icon: 'controller.png',
+    desc: 'Player',
+    dimension: 12
   }
 }
 
@@ -342,10 +347,12 @@ const types = {
   'cranetrailer': icons.cranetrailer,
   'stumpcutter': icons.stumpcutter,
   'misc': icons.misc,
+  'controller': icons.controller
 }
 
 function getIcon(object){
-  if (icons.hasOwnProperty(object.category.toLowerCase())) return icons[object.category.toLowerCase()]
+  if ('controller' in object) return icons['controller']
+  else if (icons.hasOwnProperty(object.category.toLowerCase())) return icons[object.category.toLowerCase()]
   else if (icons.hasOwnProperty(object.type.toLowerCase())) return icons[object.type.toLowerCase()]
   return icons['default']
 }
@@ -359,7 +366,7 @@ function getIconPopup(object){
     else if (object.fillTypes.toLowerCase() == 'unknown') popup += '<br>Empty'
   }
 
-  if (object.isAIActive == 'true') popup += '<br>Helper: Active'
+  if (object.isAIActive === 'true') popup += '<br>Helper: Active'
   if (object.controller) popup += '<br>Player: '+ object.controller
 
   popup += '</small>'

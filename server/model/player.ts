@@ -4,7 +4,7 @@ import utility from '../libraries/utility';
 function getPlayers(players){
   const results = [];
   players.forEach(player=>{
-    if (!lodash.isEmpty(player)) if (player.isUsed==true) results.push(new Player(player))
+    if (!lodash.isEmpty(player)) if (player.isUsed===true) results.push(new Player(player))
   })
   return results
 }
