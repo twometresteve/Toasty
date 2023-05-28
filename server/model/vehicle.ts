@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 import utility from '../libraries/utility';
-import icons from '../libraries/icons';
+import {getIcon, getIconPopup} from '../libraries/icons';
 
 var mapSize:number;
 
@@ -23,8 +23,8 @@ function Vehicle(vehicle){
   this.type = vehicle.type
   this.category = vehicle.category
   this.controller = vehicle.controller
-  this.icon = icons.getIcon(vehicle)
-  this.popup = icons.getIconPopup(vehicle)
+  this.icon = getIcon(vehicle)
+  this.popup = getIconPopup(vehicle)
 }
 
 export default {getVehicles, Vehicle}

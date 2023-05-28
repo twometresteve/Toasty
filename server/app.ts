@@ -7,7 +7,7 @@ import cron from 'node-cron';
 import api from './api';
 import mongoose from 'mongoose';
 import {exec} from 'node:child_process';
-import icons from './libraries/icons';
+import {icons} from './libraries/iconList';
 import cookieParser from 'cookie-parser';
 import viewRouter from './routes/index';
 import apiRouter from './routes/api';
@@ -46,7 +46,7 @@ server.use(function(req:express.Request, res:express.Response, next){
   res.locals.currentPage = req.url;
   res.locals.config = config;
   res.locals.version = version;
-  res.locals.icons = icons.icons;
+  res.locals.icons = icons;
   next();
 })
 
