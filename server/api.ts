@@ -38,7 +38,7 @@ async function fetchMap(cb){
 
 async function fetchXMLStats(cb){
   updateServerOnPathChange();
-  const result = await cringePromise('http://185.239.211.79:8820/feed/dedicated-server-stats.json?code=6pZ2n1Ny', 'DSS');
+  const result = await cringePromise('http://185.239.211.79:8820/feed/dedicated-server-stats.json?code=' + process.env.FS_SERVER_CODE, 'DSS');
   cb(result)
 }
 
@@ -60,7 +60,7 @@ function fetchEntities(cb){
 async function fetchCSG(cb){
   updateServerOnPathChange();
   logger.info('fetchCSG')
-  const result = await cringePromise('http://185.239.211.79:8820/feed/dedicated-server-savegame.html?code=6pZ2n1Ny&file=careerSavegame', 'CSG')
+  const result = await cringePromise('http://185.239.211.79:8820/feed/dedicated-server-savegame.html?code=' + process.env.FS_SERVER_CODE + '&file=careerSavegame', 'CSG')
   logger.info(JSON.stringify(result))
 
   const x:any = utility.c2json(await result[0].clone().text())
