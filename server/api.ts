@@ -1,6 +1,6 @@
 import utility from './libraries/utility';
 import axios from 'axios';
-import FS_Servers from './model/serverSchema';
+import logger from './libraries/logger';
 import {version} from './libraries/version';
 import config from '../config.json';
 import {Config} from '../typings/config';
@@ -14,10 +14,6 @@ const uaString = `Toasty ${version}/`;
 
 let changeServerTo = 'irtSilage';
 let changeMapTo = config.Livemap.Map.Silage;
-
-async function fetchServerFromDatabase(serverName:string){
-  return await FS_Servers.findById(serverName);
-}
 
 function updateServerOnPathChange(){
   if (config.Livemap.PageURL === '/grain') {
@@ -42,8 +38,7 @@ async function fetchMap(cb){
 
 async function fetchXMLStats(cb){
   updateServerOnPathChange();
-  const server = await fetchServerFromDatabase(changeServerTo);
-  const result = await cringePromise('http://'+server.ip+'/feed/dedicated-server-stats.json?code='+server.code, 'DSS');
+  const result = await cringePromise('http://185.239.211.79:8820/feed/dedicated-server-stats.json?code=6pZ2n1Ny', 'DSS');
   cb(result)
 }
 
@@ -64,8 +59,10 @@ function fetchEntities(cb){
 
 async function fetchCSG(cb){
   updateServerOnPathChange();
-  const server = await fetchServerFromDatabase(changeServerTo);
-  const result = await cringePromise('http://'+server.ip+'/feed/dedicated-server-savegame.html?code='+server.code+'&file=careerSavegame', 'CSG')
+  logger.info('fetchCSG')
+  const result = await cringePromise('http://185.239.211.79:8820/feed/dedicated-server-savegame.html?code=6pZ2n1Ny&file=careerSavegame', 'CSG')
+  logger.info(JSON.stringify(result))
+
   const x:any = utility.c2json(await result[0].clone().text())
   cb(new Game(x))
 }
