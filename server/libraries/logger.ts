@@ -27,7 +27,7 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console],
   format: winston.format.printf(log=>`${log.level.toUpperCase()} :: ${log.message}`)
 });
-logger.JSON = function(value){
-  this.info(JSON.stringify(value))
-}
+// logger.JSON = function(value){
+//   this.info(JSON.stringify(value))
+// }
 export default logger

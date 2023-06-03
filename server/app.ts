@@ -5,7 +5,6 @@ import engines from 'consolidate';
 import path from 'node:path';
 import cron from 'node-cron';
 import api from './api';
-import mongoose from 'mongoose';
 import {exec} from 'node:child_process';
 import {icons} from './libraries/iconList';
 import cookieParser from 'cookie-parser';
@@ -17,21 +16,6 @@ import createError from 'http-errors';
 
 config as Config;
 const server:Express = express();
-
-mongoose.set('strictQuery', true);
-mongoose.connect(config.Livemap.MongoDB,{
-  replicaSet: 'toastyy',
-  autoIndex: true,
-  authMechanism:'DEFAULT',
-  authSource: 'admin',
-  serverSelectionTimeoutMS: 15000,
-  waitQueueTimeoutMS: 50000,
-  socketTimeoutMS: 30000,
-  family: 4
-}).then(()=>logger.info('Successfully connected to MongoDB')).catch((error)=>{
-  logger.error(`Failed to connect to MongoDB\n${error.reason}`);
-  exec('pm2 restart Toasty')
-})
 
 server.set('views', path.join(__dirname, '../../client'));
 server.set('view engine', 'pug');
@@ -59,7 +43,6 @@ server.use(function(req:express.Request, res:express.Response, next){
 })
 
 server.use(function(err, req:express.Request, res:express.Response, next){
-  logger.JSON(err.message);
   res.status(err.statusCode);
   api.fetchServerOnly(server=>{
     res.render('error',{
